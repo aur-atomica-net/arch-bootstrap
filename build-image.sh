@@ -15,5 +15,5 @@ apt-get -y install docker-engine
 
 tar xf /arch-bootstrap/archlinux-bootstrap-${VERSION}-x86_64.tar.gz
 
-tar --numeric-owner -C root.x86_64 -c . | docker -H tcp://172.17.42.1:2375 import - "${IMAGE_NAME}:${VERSION}"
-docker -H tcp://172.17.42.1:2375 tag "${IMAGE_NAME}:${VERSION}" "${IMAGE_NAME}:latest"
+tar --numeric-owner -C root.x86_64 -c . | docker import - "${IMAGE_NAME}:${VERSION}"
+docker tag "${IMAGE_NAME}:${VERSION}" "${IMAGE_NAME}:latest"
