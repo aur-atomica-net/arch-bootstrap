@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -x # Echo?
 set -e # Errors?
 set -o pipefail
@@ -17,7 +17,7 @@ fi
 
 gpg --keyserver-options auto-key-retrieve --auto-key-locate keyserver --keyserver pool.sks-keyservers.net --verify "archlinux-bootstrap-${VERSION}-x86_64.tar.gz.sig" "archlinux-bootstrap-${VERSION}-x86_64.tar.gz"
 
-docker run --rm -v $(pwd):/arch-bootstrap -v /var/run/docker.sock:/var/run/docker.sock --env http_proxy=${http_proxy} --env https_proxy=${https_proxy} docker:$DOCKER_VERSION /bin/bash /arch-bootstrap/build-image.sh $IMAGE_NAME $VERSION
+docker run --rm -v $(pwd):/arch-bootstrap -v /var/run/docker.sock:/var/run/docker.sock --env http_proxy=${http_proxy} --env https_proxy=${https_proxy} docker:$DOCKER_VERSION /bin/sh /arch-bootstrap/build-image.sh $IMAGE_NAME $VERSION
 
 # Push to registry if configured
 if [ ! -z "${DOCKER_REGISTRY}" ]; then

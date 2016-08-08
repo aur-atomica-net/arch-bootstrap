@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -x # Echo?
 set -e # Errors?
 set -o pipefail
