@@ -5,7 +5,8 @@ set -o pipefail
 
 IMAGE_NAME="atomica/arch-bootstrap"
 MIRROR="http://mirrors.kernel.org/archlinux"
-VERSION=$(curl ${MIRROR}/iso/latest/ | grep -E "archlinux-bootstrap-\d{4}\.\d{2}.\d{2}-x86_64.tar.gz" | grep -Eo "\d{4}\.\d{2}.\d{2}" | head -n1)
+VERSION=$(curl ${MIRROR}/iso/latest/ | grep -E "archlinux-bootstrap-[0-9]{4}\.[0-9]{2}\.[0-9]{2}-x86_64.tar.gz" | grep -Eo "[0-9]{4}\.[0-9]{2}\.[0-9]{2}" | head -n1)
+echo $VERSION
 DOCKER_VERSION=$(docker version --format '{{.Server.Version}}')
 
 if [[ ! -f "archlinux-bootstrap-${VERSION}-x86_64.tar.gz" ]]; then
